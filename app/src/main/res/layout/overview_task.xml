@@ -1,23 +1,30 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="8dp">
+    app:cardBackgroundColor="#464646"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:padding="8dp">
-        android:textColor="#F4EFEF"
+
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Beispiel Text"
-            android:textColor="#F4EFEF">
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#454545"
+            android:textColor="#F4EFEF"
+            app:iconTint="#464646"
+            tools:text="Beispiel Text">
 
 
         </Button>
@@ -25,20 +32,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:text="Name ">
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#F4EFEF"
+            tools:text="Name ">
 
         </TextView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="01.01.9999"
-            android:layout_marginTop="45dp"
-            android:layout_marginLeft="250dp">
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#F4EFEF"
+            tools:text="01.01.9999">
 
         </TextView>
-
 
 
     </RelativeLayout>

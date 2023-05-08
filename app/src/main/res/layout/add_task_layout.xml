@@ -104,16 +104,6 @@
         app:layout_constraintBottom_toTopOf="@+id/navbar"
         app:layout_constraintStart_toEndOf="@+id/startDate" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top" />
-
     <TextView
         android:id="@+id/text_startDate"
         android:layout_width="wrap_content"
@@ -130,16 +120,17 @@
         android:id="@+id/text_endDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="127dp"
         android:layout_marginBottom="4dp"
         android:backgroundTint="#454545"
         android:text="Faelligkeitsdatum:"
         android:textColor="#F4EFEF"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/endDate"
-        tools:layout_editor_absoluteX="248dp" />
+        app:layout_constraintStart_toEndOf="@+id/text_startDate" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/aufgabenName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -153,18 +144,20 @@
         app:layout_constraintTop_toBottomOf="@+id/pageName" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/beschreibung"
         android:layout_width="318dp"
         android:layout_height="139dp"
         app:layout_constraintBottom_toTopOf="@+id/text_endDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText">
+        app:layout_constraintTop_toBottomOf="@+id/aufgabenName">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="139dp"
             android:backgroundTint="#454545"
-            android:hint="Beschreibung" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:hint="Beschreibung der Aufgabe" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
