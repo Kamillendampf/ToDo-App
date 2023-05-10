@@ -12,15 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.javatest.Moduls.TodoModuls;
 import com.example.javatest.R;
+import com.example.javatest.interfaces.ViewTodoBody;
 
 import java.util.ArrayList;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
+    private final ViewTodoBody vtb;
     Context context;
     ArrayList<TodoModuls> todoModuls;
-    public TaskAdapter(Context context, ArrayList<TodoModuls> todoModuls){
+    public TaskAdapter(Context context, ArrayList<TodoModuls> todoModuls, ViewTodoBody vtb){
         this.context = context;
         this.todoModuls = todoModuls;
+        this.vtb = vtb;
     }
 
     /**
@@ -49,7 +52,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         LayoutInflater i = LayoutInflater.from(context);
         View view =i.inflate(R.layout.overview_task, parent, false);
 
-        return new TaskAdapter.ViewHolder(view);
+        return new TaskAdapter.ViewHolder(view, vtb);
     }
 
     /**
@@ -76,7 +79,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull TaskAdapter.ViewHolder holder, int position) {
         holder.taskName.setText(todoModuls.get(position).getName());
         holder.taskAuthor.setText(todoModuls.get(position).getAutor());
-        holder.taskEnd.setText("99.99.9999");
+        holder.taskEnd.setText(todoModuls.get(position).getMaturityDate());
     }
 
     /**
@@ -99,12 +102,25 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
 
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, ViewTodoBody vtb) {
             super(itemView);
 
             this.taskName = itemView.findViewById(R.id.taskName);
             this.taskAuthor = itemView.findViewById(R.id.taskAuthor);
             this.taskEnd = itemView.findViewById(R.id.taskEnd);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (vtb != null){
+                        int position = getAdapterPosition();
+
+                        if (position != RecyclerView.NO_POSITION){
+                            vtb.onTodoClick(position);
+                        }
+                    }
+                }
+            });
         }
 
 

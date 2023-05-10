@@ -6,13 +6,13 @@ public class TodoModuls {
     private String name;                //Name der Aufgabe
     private String beschreibung;        // Optionale Beschreibung der Aufgabe
     private String autor;               // Ersteller der Aufgabe
-    private LocalDate maturityDate;     // Faelligkeitsdatum
+    private String maturityDate;     // Faelligkeitsdatum
 
 
 
     //Konstruktor
 
-    public TodoModuls(String name, String autor, String beschreibung) {
+    public TodoModuls(String name, String autor, String beschreibung, String endDate) {
         this.name = name;
         this.beschreibung = beschreibung;
         this.autor = autor;
@@ -44,11 +44,11 @@ public class TodoModuls {
         this.autor = autor;
     }
 
-    public LocalDate getMaturityDate() {
+    public String getMaturityDate() {
         return maturityDate;
     }
 
-    public void setMaturityDate(LocalDate maturityDate) {
+    public void setMaturityDate(String maturityDate) {
         this.maturityDate = maturityDate;
     }
 

@@ -44,6 +44,8 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
 
+
+    <!-- List of all Todos, sorted by Task Name, author and maturity date of task-->
     <string-array name="task_name">
         <item> Task 1</item>
         <item> Task 2</item>
@@ -54,18 +56,29 @@
         <item> Task 4</item>
         <item> Task 8</item>
         <item> Task 9</item>
-        <item> Task 9</item>
+
     </string-array>
     <string-array name="task_author">
         <item> Jon Doe</item>
         <item> Kurt Cobain</item>
         <item> Keira Knightley</item>
-        <item> Lucy Willems</item>
+        <item> Lucy Williems-Christbirne</item>
         <item> Knoldeboll</item>
         <item> Riffraff</item>
         <item> Layn Kiowashie</item>
         <item> Johanna Insel</item>
         <item> Baum Nina</item>
-        <item> Baum Nina</item>
+    </string-array>
+    <string-array name="task_endDate">
+        <item> 01.99.9999</item>
+        <item> 02.99.9999</item>
+        <item> 03.99.9999</item>
+        <item> 04.99.9999</item>
+        <item> 05.99.9999</item>
+        <item> 06.99.9999</item>
+        <item> 07.99.9999</item>
+        <item> 08.99.9999</item>
+        <item> 09.99.9999</item>
+
     </string-array>
 </resources>
