@@ -5,20 +5,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 
+import com.example.javatest.Actions.AddTask;
 import com.example.javatest.Addapter.TaskAdapter;
 import com.example.javatest.Moduls.TodoModuls;
 import com.example.javatest.interfaces.ViewTodoBody;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ViewTodoBody {
 
 
     private ArrayList<TodoModuls> tasklist = new ArrayList<>();
-
+    private ImageButton create;
 
 
     @Override
@@ -26,13 +30,21 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView rv = findViewById(R.id.tasks);
+
+        create = findViewById(R.id.create);
+
         setUpTasks();
 
         TaskAdapter ta = new TaskAdapter(this, tasklist, this);
         rv.setAdapter(ta);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddTask.newInstance().show(getSupportFragmentManager(), AddTask.TAG);
+            }
+        });
     }
 
     private void setUpTasks(){
@@ -47,6 +59,14 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
 
     @Override
     public void onTodoClick(int position) {
-
+        TextView taskName = findViewById(R.id.taskName);
+        tasklist.get(position).setName("Ich wurde gedrueckt"+position);
+        taskName.setText(tasklist.get(position).getName());
     }
+
+
+
+
+
+
 }
