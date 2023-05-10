@@ -24,17 +24,19 @@ public class SplashActivity extends AppCompatActivity {
 
 
         final Intent i = new Intent(this, MainActivity.class);
-        System.out.print("Ich habe entlich etwas zu tun, aber nachher hab ich gleich keinen Bock mehr weil ich bin ein DUmmer spasst");
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                System.out.print("Diese Aufgabe wurde ausgefuehrt");
+
                 startActivity(i);
                 finish();
 
             }
         }, 3000);
     }
+    private void updateList(){
 
+    }
 
 }
