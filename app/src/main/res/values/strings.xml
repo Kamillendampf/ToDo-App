@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">JavaTest</string>
-    <string name="title_activity_splash">SplashActivity</string>
+    <string name="app_name">ToDo-App</string>
+    <string name="title_activity_splash">ToDo-App</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -43,4 +43,29 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+
+    <string-array name="task_name">
+        <item> Task 1</item>
+        <item> Task 2</item>
+        <item> Task 3</item>
+        <item> Task 4</item>
+        <item> Task 5</item>
+        <item> Task 6</item>
+        <item> Task 4</item>
+        <item> Task 8</item>
+        <item> Task 9</item>
+        <item> Task 9</item>
+    </string-array>
+    <string-array name="task_author">
+        <item> Jon Doe</item>
+        <item> Kurt Cobain</item>
+        <item> Keira Knightley</item>
+        <item> Lucy Willems</item>
+        <item> Knoldeboll</item>
+        <item> Riffraff</item>
+        <item> Layn Kiowashie</item>
+        <item> Johanna Insel</item>
+        <item> Baum Nina</item>
+        <item> Baum Nina</item>
+    </string-array>
 </resources>

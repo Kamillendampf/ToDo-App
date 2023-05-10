@@ -12,11 +12,11 @@ public class TodoModuls {
 
     //Konstruktor
 
-    public TodoModuls(String name, String beschreibung, String autor, LocalDate maturityDate) {
+    public TodoModuls(String name, String autor, String beschreibung) {
         this.name = name;
         this.beschreibung = beschreibung;
         this.autor = autor;
-        this.maturityDate = maturityDate;
+       // this.maturityDate = maturityDate;
     }
 
     //Getter- and Setter-Methods

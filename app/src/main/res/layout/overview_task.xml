@@ -15,8 +15,8 @@
         android:padding="8dp">
 
 
-        <Button
-            android:id="@+id/taskButton"
+        <TextView
+            android:id="@+id/taskName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -24,21 +24,23 @@
             android:layout_marginRight="10dp"
             android:backgroundTint="#454545"
             android:textColor="#F4EFEF"
+            android:textAlignment="center"
+            android:textSize="18dp"
             app:iconTint="#464646"
-            tools:text="Beispiel Text">
+            tools:text="Task Name">
 
 
-        </Button>
+        </TextView>
 
         <TextView
-            android:id="@+id/editor"
+            android:id="@+id/taskAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="10dp"
             android:textColor="#F4EFEF"
-            tools:text="Name ">
+            tools:text="Jon Doe ">
 
         </TextView>
 
