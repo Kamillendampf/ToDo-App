@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.javatest.Database.DAOtodo;
+import com.example.javatest.Moduls.TodoModuls;
 import com.example.javatest.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -17,6 +20,7 @@ public class AddTask extends BottomSheetDialogFragment {
     private EditText aufgabenName, beschreibung, text_endDate;
     private Button save;
 
+    DAOtodo daoTodo =  new DAOtodo();
 
     public static AddTask newInstance(){
         return new AddTask();
@@ -51,8 +55,15 @@ public class AddTask extends BottomSheetDialogFragment {
                 String task_name = aufgabenName.getText().toString();
                 String task_beschreibung = beschreibung.getText().toString();
                 String task_endDate = text_endDate.getText().toString();
+                String autor = "Name";
+                TodoModuls tdm = new TodoModuls( task_name,  autor,  task_beschreibung,  task_endDate);
+                daoTodo.add(tdm).addOnSuccessListener(suc -> {
 
+                            System.out.print("hat gekaleppt");
 
+                        }).addOnFailureListener(er -> {
+                            System.out.print("leider fehlgeschalgen");
+                });
             }
         });
 

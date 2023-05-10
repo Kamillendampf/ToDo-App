@@ -11,7 +11,7 @@ public class TodoModuls {
 
 
     //Konstruktor
-
+    public TodoModuls(){}
     public TodoModuls(String name, String autor, String beschreibung, String endDate) {
         this.name = name;
         this.beschreibung = beschreibung;

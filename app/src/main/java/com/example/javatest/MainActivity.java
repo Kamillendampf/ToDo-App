@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -17,12 +18,14 @@ import com.example.javatest.interfaces.ViewTodoBody;
 
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements ViewTodoBody {
 
 
     private ArrayList<TodoModuls> tasklist = new ArrayList<>();
     private ImageButton create;
+    private ImageButton profil;
 
 
     @Override
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
         RecyclerView rv = findViewById(R.id.tasks);
 
         create = findViewById(R.id.create);
+        profil = findViewById(R.id.profil);
 
         setUpTasks();
 
@@ -43,6 +47,13 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
             @Override
             public void onClick(View v) {
                 AddTask.newInstance().show(getSupportFragmentManager(), AddTask.TAG);
+            }
+        });
+
+        profil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onProfileClick();
             }
         });
     }
@@ -62,6 +73,10 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
         TextView taskName = findViewById(R.id.taskName);
         tasklist.get(position).setName("Ich wurde gedrueckt"+position);
         taskName.setText(tasklist.get(position).getName());
+    }
+
+    public void onProfileClick(){
+        final Intent i = new Intent(this, Profil.class);
     }
 
 
