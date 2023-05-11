@@ -83,4 +83,5 @@
     </string-array>
     <string name="title_activity_profile">Profile</string>
     <string name="title_activity_profil">Profil</string>
+    <string name="title_activity_expandet_todo">ExpandetTodo</string>
 </resources>

@@ -87,8 +87,13 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
 
     @Override
     public void onTodoClick(int position) {
-        TextView taskName = findViewById(R.id.taskName);
-        taskName.setText(tasklist.get(position).getName());
+        Intent i = new Intent(MainActivity.this, ExpandetTodo.class);
+        i.putExtra("Name", tasklist.get(position).getName());
+        i.putExtra("Autor", tasklist.get(position).getAutor());
+        i.putExtra("Datum", tasklist.get(position).getMaturityDate());
+        i.putExtra("Beschreibung", tasklist.get(position).getBeschreibung());
+        startActivity(i);
+
     }
 
 
