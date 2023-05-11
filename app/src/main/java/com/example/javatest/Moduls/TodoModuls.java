@@ -8,15 +8,18 @@ public class TodoModuls {
     private String autor;               // Ersteller der Aufgabe
     private String maturityDate;     // Faelligkeitsdatum
 
+    private int forUser;            // id of the user.
+
 
 
     //Konstruktor
     public TodoModuls(){}
-    public TodoModuls(String name, String autor, String beschreibung, String endDate) {
+    public TodoModuls(int forUser, String name, String autor, String beschreibung, String endDate) {
         this.name = name;
         this.beschreibung = beschreibung;
         this.autor = autor;
-       // this.maturityDate = maturityDate;
+       this.maturityDate = endDate;
+       this.forUser = forUser;
     }
 
     //Getter- and Setter-Methods
@@ -51,5 +54,9 @@ public class TodoModuls {
     public void setMaturityDate(String maturityDate) {
         this.maturityDate = maturityDate;
     }
+
+    public int getForUser(){ return forUser;}
+
+    public void setForUser(int userId){ forUser = userId; }
 
 }
