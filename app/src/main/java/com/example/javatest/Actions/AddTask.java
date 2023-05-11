@@ -56,7 +56,7 @@ public class AddTask extends BottomSheetDialogFragment {
                 String task_beschreibung = beschreibung.getText().toString();
                 String task_endDate = text_endDate.getText().toString();
                 String autor = "Name";
-                TodoModuls tdm = new TodoModuls( task_name,  autor,  task_beschreibung,  task_endDate);
+                TodoModuls tdm = new TodoModuls( 0, task_name,  autor,  task_beschreibung,  task_endDate);
                 daoTodo.add(tdm).addOnSuccessListener(suc -> {
 
                             System.out.print("hat gekaleppt");
