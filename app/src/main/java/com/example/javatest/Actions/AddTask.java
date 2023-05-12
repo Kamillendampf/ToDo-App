@@ -59,10 +59,11 @@ public class AddTask extends BottomSheetDialogFragment {
                 TodoModuls tdm = new TodoModuls( 0, task_name,  autor,  task_beschreibung,  task_endDate);
                 daoTodo.add(tdm).addOnSuccessListener(suc -> {
 
-                            System.out.print("hat gekaleppt");
+
+                            getDialog().dismiss();
 
                         }).addOnFailureListener(er -> {
-                            System.out.print("leider fehlgeschalgen");
+
                 });
             }
         });

@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
     private ImageButton create;
     private ImageButton profil;
     private DAOtodo daoTodo;
+    private TaskAdapter ta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +45,12 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
         create = findViewById(R.id.create);
         profil = findViewById(R.id.profil);
 
-        TaskAdapter ta = new TaskAdapter(this, tasklist, this);
-        rv.setAdapter(ta);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-
         setUpTasks();
 
+         ta = new TaskAdapter(this, tasklist, this);
+
+        rv.setAdapter(ta);
+        rv.setLayoutManager(new LinearLayoutManager(this));
 
 
         create.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
                    if(todoModul.getForUser() == me) {
                        tasklist.add(todoModul);
                    }
+                    ta.notifyDataSetChanged();
                 }
             }
 
@@ -88,10 +90,10 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
     @Override
     public void onTodoClick(int position) {
         Intent i = new Intent(MainActivity.this, ExpandetTodo.class);
-        i.putExtra("Name", tasklist.get(position).getName());
-        i.putExtra("Autor", tasklist.get(position).getAutor());
-        i.putExtra("Datum", tasklist.get(position).getMaturityDate());
-        i.putExtra("Beschreibung", tasklist.get(position).getBeschreibung());
+        i.putExtra("NAME", tasklist.get(position).getName());
+        i.putExtra("AUTOR", tasklist.get(position).getAutor());
+        i.putExtra("DATE", tasklist.get(position).getMaturityDate());
+        i.putExtra("BESCHREIBUNG", tasklist.get(position).getBeschreibung());
         startActivity(i);
 
     }

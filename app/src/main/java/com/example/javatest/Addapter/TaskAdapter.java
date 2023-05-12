@@ -100,8 +100,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
         TextView taskName, taskAuthor, taskEnd;
 
-
-
         public ViewHolder(@NonNull View itemView, ViewTodoBody vtb) {
             super(itemView);
 
