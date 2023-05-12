@@ -1,13 +1,12 @@
 package com.example.javatest.Moduls;
 
-import java.time.LocalDate;
-
 public class TodoModuls {
     private String name;                //Name der Aufgabe
     private String beschreibung;        // Optionale Beschreibung der Aufgabe
     private String autor;               // Ersteller der Aufgabe
     private String maturityDate;     // Faelligkeitsdatum
 
+    private String key;
     private int forUser;            // id of the user.
 
 
@@ -20,6 +19,7 @@ public class TodoModuls {
         this.autor = autor;
        this.maturityDate = endDate;
        this.forUser = forUser;
+
     }
 
     //Getter- and Setter-Methods
@@ -58,5 +58,9 @@ public class TodoModuls {
     public int getForUser(){ return forUser;}
 
     public void setForUser(int userId){ forUser = userId; }
+
+    public String getKey() { return this.key; }
+
+    public void setKey(String key){ this.key = key; }
 
 }

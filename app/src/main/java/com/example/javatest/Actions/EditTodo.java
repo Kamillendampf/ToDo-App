@@ -1,29 +1,33 @@
 package com.example.javatest.Actions;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.javatest.Database.DAOtodo;
 import com.example.javatest.Moduls.TodoModuls;
 import com.example.javatest.R;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class EditTodo {
+public class EditTodo  extends BottomSheetDialogFragment {
 
     public static final String TAG = "add_task_layout";
-
+    public String key;
     private EditText aufgabenName, beschreibung, text_endDate;
+    private TextView task_name,  task_beschreibung, task_endDate;
+    private TextView pageName;
     private Button save;
 
     DAOtodo daoTodo =  new DAOtodo();
 
-    public static AddTask newInstance(){
-        return new AddTask();
-    }
+    public static EditTodo newInstance(){ return new EditTodo();}
 
     @Override
     public void onCreate(Bundle saveInstance) {
@@ -45,8 +49,17 @@ public class EditTodo {
         aufgabenName = getView().findViewById(R.id.aufgabenName);
         beschreibung = getView().findViewById(R.id.beschreibung);
         text_endDate= getView().findViewById(R.id.endDate);
-
+        pageName = getView().findViewById(R.id.pageName);
+        pageName.setText("Aufgabe Bearbeiten");
         save = getView().findViewById(R.id.save);
+
+        task_name = getActivity().findViewById(R.id.aufgabenName);
+        task_beschreibung = getActivity().findViewById(R.id.aufgabenBeschreibung);
+        task_endDate = getActivity().findViewById(R.id.aufgabenEndDate);
+        aufgabenName.setText(task_name.getText());
+        beschreibung.setText(task_beschreibung.getText());
+        text_endDate.setText(task_endDate.getText());
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,14 +69,7 @@ public class EditTodo {
                 String task_endDate = text_endDate.getText().toString();
                 String autor = "Name";
                 TodoModuls tdm = new TodoModuls( 0, task_name,  autor,  task_beschreibung,  task_endDate);
-                daoTodo.add(tdm).addOnSuccessListener(suc -> {
 
-
-                    getDialog().dismiss();
-
-                }).addOnFailureListener(er -> {
-
-                });
             }
         });
 

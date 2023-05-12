@@ -3,6 +3,7 @@ package com.example.javatest;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import com.example.javatest.Actions.EditTodo;
 import com.example.javatest.Actions.Share;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -27,7 +28,8 @@ public class ExpandetTodo extends AppCompatActivity {
     private ActivityExpandetTodoBinding binding;
 
     private TextView taskName, taskBeschreibung, taskDate, taskAutor;
-    private Button share;
+    private String key;
+    private Button share, edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +41,13 @@ public class ExpandetTodo extends AppCompatActivity {
         taskAutor = findViewById(R.id.aufgabenAutor);
 
         share = findViewById(R.id.share);
+        edit = findViewById(R.id.edit);
 
         taskName.setText(getIntent().getStringExtra("NAME"));
         taskBeschreibung.setText(getIntent().getStringExtra("BESCHREIBUNG"));
         taskDate.setText(getIntent().getStringExtra("DATE"));
         taskAutor.setText(getIntent().getStringExtra("AUTOR"));
+        key = getIntent().getStringExtra("KEY");
 
 
         share.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +55,14 @@ public class ExpandetTodo extends AppCompatActivity {
             public void onClick(View v) {
 
                 Share.newInstance().show(getSupportFragmentManager(), Share.TAG);
+
+            }
+        });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EditTodo.newInstance().show(getSupportFragmentManager(), Share.TAG);
 
             }
         });

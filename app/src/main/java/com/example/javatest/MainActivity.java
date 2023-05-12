@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
                 for(DataSnapshot data : snapshot.getChildren()){
                    TodoModuls todoModul = data.getValue(TodoModuls.class);
                    if(todoModul.getForUser() == me) {
+                       todoModul.setKey(data.getKey());
                        tasklist.add(todoModul);
                    }
                     ta.notifyDataSetChanged();
@@ -99,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
         i.putExtra("AUTOR", tasklist.get(position).getAutor());
         i.putExtra("DATE", tasklist.get(position).getMaturityDate());
         i.putExtra("BESCHREIBUNG", tasklist.get(position).getBeschreibung());
+        i.putExtra("KEY", tasklist.get(position).getKey() );
         startActivity(i);
 
     }
