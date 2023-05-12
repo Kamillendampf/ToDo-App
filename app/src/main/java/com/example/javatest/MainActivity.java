@@ -27,6 +27,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ViewTodoBody {
     private final int me = 0;
+
+    private TextView pageName;
     private ArrayList<TodoModuls> tasklist = new ArrayList<>();
     private ImageButton create;
     private ImageButton profil;
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
 
         create = findViewById(R.id.create);
         profil = findViewById(R.id.profil);
+        pageName = findViewById(R.id.pageName);
+
+        pageName.setText(getIntent().getStringExtra("auth"));
 
         setUpTasks();
 
