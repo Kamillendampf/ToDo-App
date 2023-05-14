@@ -13,11 +13,11 @@ public class TodoModuls {
 
     //Konstruktor
     public TodoModuls(){}
-    public TodoModuls(int forUser, String name, String autor, String beschreibung, String endDate) {
+    public TodoModuls(int forUser, String name, String autor, String beschreibung, String day, String month, String year) {
         this.name = name;
         this.beschreibung = beschreibung;
         this.autor = autor;
-       this.maturityDate = endDate;
+       this.maturityDate = day+"."+month+"."+year;
        this.forUser = forUser;
 
     }

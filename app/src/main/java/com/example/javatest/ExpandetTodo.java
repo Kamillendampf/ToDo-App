@@ -67,11 +67,6 @@ public class ExpandetTodo extends AppCompatActivity {
             }
         });
 
-
-
-
     }
-
-
 
 }

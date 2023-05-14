@@ -24,7 +24,8 @@ public class Share extends BottomSheetDialogFragment{
 
     private EditText forUser;
     private Button share;
-    TextView task_name,  task_beschreibung,  autor,  task_endDate;
+    TextView task_name,  task_beschreibung,  autor, task_endDate;
+    String day, month, year;
     public static Share newInstance (){return new Share();}
 
     @Override
@@ -53,9 +54,18 @@ public class Share extends BottomSheetDialogFragment{
                 task_endDate = getActivity().findViewById(R.id.aufgabenEndDate);
                 autor = getActivity().findViewById(R.id.aufgabenAutor);
 
+                if (task_endDate.getText().toString().contains(".")){
+                    String[] dateParts = task_endDate.getText().toString().split("\\.");
+
+                     day = dateParts[0].toString();
+                     month = dateParts[1].toString();
+                     year = dateParts[2].toString();
+                } else{
+                    day = "404";
+                }
 
 
-                TodoModuls tdm = new TodoModuls( Integer.parseInt(String.valueOf(forUser.getText())), task_name.getText().toString(),  autor.getText().toString(),  task_beschreibung.getText().toString(),  task_endDate.getText().toString());
+                TodoModuls tdm = new TodoModuls( Integer.parseInt(String.valueOf(forUser.getText())), task_name.getText().toString(),  autor.getText().toString(),  task_beschreibung.getText().toString(),  day, month, year);
                 daoTodo.add(tdm).addOnSuccessListener(suc -> {
 
                     getDialog().dismiss();

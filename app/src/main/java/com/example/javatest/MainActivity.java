@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
         profil = findViewById(R.id.profil);
         pageName = findViewById(R.id.pageName);
 
-        pageName.setText(getIntent().getStringExtra("auth"));
+        //pageName.setText(getIntent().getStringExtra("auth"));
 
         setUpTasks();
 

@@ -8,166 +8,158 @@
     android:gravity="fill"
     android:background="#282828"
     tools:context=".MainActivity">
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:fillViewport="true"
-    android:gravity="fill"
-    android:background="#282828"
->
 
-    <TextView
-        android:id="@+id/pageName"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="71dp"
-        android:layout_marginEnd="76dp"
-        android:text="Neue Aufgabe"
-        android:textColor="#F4EFEF"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="746dp"
+        android:background="#282828"
+        android:fillViewport="true"
+        android:gravity="fill">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/navbar"
-        android:layout_width="match_parent"
-        android:layout_height="141dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="579dp"
-        android:background="#454545"
-        app:itemHorizontalTranslationEnabled="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:id="@+id/pageName"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="71dp"
+            android:layout_marginEnd="76dp"
+            android:text="Neue Aufgabe"
+            android:textAlignment="center"
+            android:textColor="#F4EFEF"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/home"
+
+        <Button
+            android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/home_icon"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="151dp"
+            android:layout_marginTop="500dp"
+            android:layout_marginEnd="151dp"
             android:backgroundTint="#454545"
-            android:backgroundTintMode="screen"
-            android:src="@drawable/home_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/create"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="Erstellen"
 
-        <ImageButton
-            android:id="@+id/create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/create_icon"
-            android:src="@drawable/create_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/day" />
+
+        <EditText
+            android:id="@+id/day"
+            android:layout_width="15dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="105dp"
+            android:layout_marginTop="375dp"
+            android:layout_marginEnd="245dp"
+            android:ems="10"
+            android:maxLength="2"
+            android:inputType="date"
+            android:visibility="visible"
+            android:hint="day"
+            android:textColorHint="#F4EFEF"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/month"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="175dp"
+            android:layout_marginTop="375dp"
+            android:layout_marginEnd="175dp"
+            android:ems="10"
+            android:maxLength="2"
+            android:inputType="date"
+            android:visibility="visible"
+            android:hint="month"
+            android:textColorHint="#F4EFEF"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/year"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="245dp"
+            android:layout_marginTop="375dp"
+            android:layout_marginEnd="105dp"
+            android:ems="10"
+            android:maxLength="4"
+            android:inputType="date"
+            android:hint="year"
+            android:textColorHint="#F4EFEF"
+            android:textAlignment="center"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
-        <ImageButton
-            android:id="@+id/profil"
+        <TextView
+            android:id="@+id/text_endDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/profil_icon"
-            android:src="@drawable/profil_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="129dp"
+            android:layout_marginTop="350dp"
+            android:layout_marginEnd="130dp"
+            android:backgroundTint="#454545"
+            android:text="Faelligkeitsdatum:"
+            android:textColor="#F4EFEF"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/create"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="405dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/aufgabenName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="100dp"
+            android:backgroundTint="#454545"
+            android:ems="10"
+            android:hint="Aufgaben Name"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColor="#F4EFEF"
+            android:textColorHint="#F4EFEF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pageName" />
 
-    <Button
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="151dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="151dp"
-        android:backgroundTint="#454545"
-        android:text="Erstellen"
-        app:layout_constraintBottom_toTopOf="@+id/navbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endDate" />
+        <EditText
+            android:id="@+id/beschreibung"
+            android:layout_width="wrap_content"
+            android:layout_height="94dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Beschreibung der Aufgabe"
+            android:textAlignment="center"
+            android:textColor="#F4EFEF"
+            android:textColorHint="#F4EFEF"
+            android:maxLength="250"/>
 
-    <EditText
-        android:id="@+id/endDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="133dp"
-        android:layout_marginTop="425dp"
-        android:layout_marginEnd="133dp"
-        android:ems="10"
-        android:inputType="date"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/navbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/text_endDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginEnd="130dp"
-        android:backgroundTint="#454545"
-        android:text="Faelligkeitsdatum:"
-        android:textColor="#F4EFEF"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="405dp" />
-
-    <EditText
-        android:id="@+id/aufgabenName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="100dp"
-        android:backgroundTint="#454545"
-        android:ems="10"
-        android:hint="Aufgaben Name"
-        android:inputType="text"
-        android:textAlignment="center"
-        android:textColor="#F4EFEF"
-        android:textColorHint="#F4EFEF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pageName" />
-
-    <EditText
-        android:id="@+id/beschreibung"
-        android:layout_width="344dp"
-        android:layout_height="157dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="32dp"
-        android:hint="Beschreibung der Aufgabe"
-        android:textAlignment="center"
-        android:textColor="#F4EFEF"
-        android:textColorHint="#F4EFEF" />
-
-</RelativeLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
