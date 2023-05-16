@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.javatest.Database.DAOtodo;
 import com.example.javatest.Moduls.TodoModuls;
 import com.example.javatest.R;
 import com.example.javatest.interfaces.ViewTodoBody;
@@ -24,6 +25,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         this.context = context;
         this.todoModuls = todoModuls;
         this.vtb = vtb;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     /**
@@ -90,6 +99,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return todoModuls.size();
+    }
+
+    public void removeItem(int position){
+        DAOtodo daOtodo = new DAOtodo();
+        daOtodo.remove(todoModuls.get(position).getKey());
     }
 
     /*

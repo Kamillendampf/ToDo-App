@@ -1,24 +1,39 @@
 package com.example.javatest.Moduls;
 
-public class TodoModuls {
+
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.text.FieldPosition;
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+public class TodoModuls implements Comparable<TodoModuls> {
     private String name;                //Name der Aufgabe
     private String beschreibung;        // Optionale Beschreibung der Aufgabe
     private String autor;               // Ersteller der Aufgabe
     private String maturityDate;     // Faelligkeitsdatum
 
-    private String key;
-    private int forUser;            // id of the user.
 
+    private String key;             // Der Key wird fuer die identifikation des ToDoModules benoetiget um dieses zu loeschen
+    private int forUser;            // id of the user.
+    String test;
 
 
     //Konstruktor
     public TodoModuls(){}
+
     public TodoModuls(int forUser, String name, String autor, String beschreibung, String day, String month, String year) {
         this.name = name;
         this.beschreibung = beschreibung;
         this.autor = autor;
-       this.maturityDate = day+"."+month+"."+year;
-       this.forUser = forUser;
+        this.maturityDate = day+"."+month+"."+year;
+        this.forUser = forUser;
 
     }
 
@@ -63,4 +78,34 @@ public class TodoModuls {
 
     public void setKey(String key){ this.key = key; }
 
+
+    //Vergleichen der Daten
+    public int compareTo(TodoModuls tm){
+        Calendar calendar = Calendar.getInstance();
+        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+
+        String currentDate = format.format(Calendar.getInstance().getTime());
+
+        Date today = null;
+        Date myDate = null;
+        Date hisDate = null;
+        try {
+            today = format.parse(currentDate);
+            myDate = format.parse(this.maturityDate);
+            hisDate = format.parse(tm.maturityDate);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        long myDistance = myDate.getTime() - today.getTime();
+        long hisDistance = hisDate.getTime()- today.getTime();
+
+        if (myDistance ==  hisDistance){
+            return 0;
+        } else if (myDistance >  hisDistance) {
+            return 1;
+        }else {
+            return -1;
+        }
+    }
 }

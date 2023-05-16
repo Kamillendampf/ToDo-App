@@ -1,7 +1,6 @@
 package com.example.javatest.Actions;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,8 +58,7 @@ public class AddTask extends BottomSheetDialogFragment {
 
         save = getView().findViewById(R.id.save);
 
-        int years = Calendar.getInstance().get(Calendar.YEAR);
-        beschreibung.setText(""+years);
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceAsColor")
@@ -80,29 +78,37 @@ public class AddTask extends BottomSheetDialogFragment {
 
 
                 // Rules for input velues
-                if (Integer.parseInt(task_day)< 1 || Integer.parseInt(task_day) > 31 || task_day.equals("") || Integer.parseInt(task_month) < 0 || Integer.parseInt(task_month) > 12 || task_month.equals("") || Integer.parseInt(task_year) < Calendar.getInstance().get(Calendar.YEAR)){
-                    if ( Integer.parseInt(task_day) < 1 || Integer.parseInt(task_day) > 31 || task_day.equals("")) {
+                if ((task_year.equals("") || task_name.equals("")|| task_month.equals("")) || (Integer.parseInt(task_day)< 1 || Integer.parseInt(task_day) > 31  || task_day.equals("") || Integer.parseInt(task_month) < 0 || Integer.parseInt(task_month) > 12   || Integer.parseInt(task_year) < Calendar.getInstance().get(Calendar.YEAR))){
+                    if ( (task_day.equals("") ) || ( Integer.parseInt(task_day) < 1 || Integer.parseInt(task_day) > 31 ) || (Integer.parseInt(task_day) < Calendar.getInstance().get(Calendar.DATE))) {
                         day.setText("");
                         day.setBackgroundColor(R.color.red);
                     } else{
                         day.setBackgroundColor(R.color.gray);
                     }
-                    if (Integer.parseInt(task_month) < 1 || Integer.parseInt(task_month) > 12 || task_month.equals("")) {
+                    if ((task_month.equals("")) || (Integer.parseInt(task_month) < 1 || Integer.parseInt(task_month) > 12  ) || ((Integer.parseInt(task_month) < Calendar.getInstance().get(Calendar.MONTH)))) {
                         month.setText("");
                         month.setBackgroundColor(R.color.red);
                     }
                     else{
                         day.setBackgroundColor(R.color.gray);
                     }
-                    if (Integer.parseInt(task_year) < Calendar.getInstance().get(Calendar.YEAR)) {
+                    if (  (task_year.equals("")) || (Integer.parseInt(task_year) < Calendar.getInstance().get(Calendar.YEAR))) {
                         year.setText("");
                         year.setBackgroundColor(R.color.red);
                     }
                     else{
                         day.setBackgroundColor(R.color.gray);
                     }
+                    if (task_name.equals("")){
+                        aufgabenName.setBackgroundColor(R.color.red);
+                    }else {
+                        aufgabenName.setBackgroundColor(R.color.gray);
+                    }
+
                 } else {
-                    TodoModuls tdm = new TodoModuls( 0, task_name,  autor,  task_beschreibung,  task_day, task_month, task_year);
+                    TodoModuls tdm = null;
+                        tdm = new TodoModuls( 0, task_name,  autor,  task_beschreibung,  task_day, task_month, task_year);
+
                     daoTodo.add(tdm).addOnSuccessListener(suc -> {
 
 

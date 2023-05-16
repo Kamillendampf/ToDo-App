@@ -28,8 +28,8 @@
     </TextView>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="572dp"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="153dp">
 
@@ -50,7 +50,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="100dp"
             android:layout_marginRight="50dp"
             android:text="Das ist ein Beispiel"
             android:textAlignment="center"
@@ -63,7 +63,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="350dp"
+            android:layout_marginTop="175dp"
             android:layout_marginRight="100dp"
             android:text="Faelligkeitsdatum"
             android:textAlignment="center"
@@ -76,7 +76,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="370dp"
+            android:layout_marginTop="200dp"
             android:layout_marginRight="100dp"
             android:text="99.99.9999"
             android:textAlignment="center"
@@ -89,7 +89,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
-            android:layout_marginTop="470dp"
+            android:layout_marginTop="270dp"
             android:layout_marginRight="150dp"
             android:backgroundTint="#454545"
             android:text="Endit"
@@ -101,12 +101,30 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
-            android:layout_marginTop="530dp"
+            android:layout_marginTop="330dp"
             android:layout_marginRight="150dp"
             android:backgroundTint="#454545"
             android:text="Share"
             android:textAlignment="center"
             android:textColor="#F4EFEF"></Button>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Task-Key:"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="50dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="115dp"
+            android:layout_marginTop="400dp"
+            android:text="Beispiel Key"></TextView>
     </RelativeLayout>
+
+
 
 </RelativeLayout>

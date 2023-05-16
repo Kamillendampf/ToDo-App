@@ -14,15 +14,14 @@ import com.example.javatest.Moduls.TodoModuls;
 import com.example.javatest.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
+import java.util.HashMap;
 
 public class EditTodo  extends BottomSheetDialogFragment {
 
     public static final String TAG = "add_task_layout";
-    public String key;
+    private  String taskKey;
     private EditText aufgabenName, beschreibung, day, month, year;
-    private TextView task_name,  task_beschreibung, task_endDate;
+    private TextView task_name,  task_beschreibung, task_endDate, key;
     private TextView pageName;
     private Button save;
 
@@ -60,9 +59,12 @@ public class EditTodo  extends BottomSheetDialogFragment {
         task_name = getActivity().findViewById(R.id.aufgabenName);
         task_beschreibung = getActivity().findViewById(R.id.aufgabenBeschreibung);
         task_endDate = getActivity().findViewById(R.id.aufgabenEndDate);
+        key = getActivity().findViewById(R.id.key);
+        taskKey = key.getText().toString();
         aufgabenName.setText(task_name.getText());
         beschreibung.setText(task_beschreibung.getText());
         save.setText("Bearbeiten");
+        save.setWidth(250);
 
         if (task_endDate.getText().toString().contains(".")){
             String[] dateParts = task_endDate.getText().toString().split("\\.");
@@ -70,8 +72,6 @@ public class EditTodo  extends BottomSheetDialogFragment {
             day.setText(dateParts[0].toString());
             month.setText(dateParts[1].toString());
             year.setText(dateParts[2].toString());
-        } else{
-            day.setText("404");
         }
 
 
@@ -87,7 +87,11 @@ public class EditTodo  extends BottomSheetDialogFragment {
                 String task_year = year.getText().toString();
                 String autor = "Name";
                 TodoModuls tdm = new TodoModuls( 0, task_name,  autor,  task_beschreibung,  task_day, task_month, task_year);
-
+                HashMap <String, Object> tdmChange = new HashMap<>();
+                tdmChange.put("beschreibung", tdm.getBeschreibung());
+                tdmChange.put("maturityDate", tdm.getMaturityDate());
+                tdmChange.put("name", tdm.getName());
+                daoTodo.update(taskKey, tdmChange);
             }
         });
 

@@ -1,11 +1,14 @@
 package com.example.javatest;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 
 
 import com.example.javatest.Actions.AddTask;
+import com.example.javatest.Addapter.Helper.TaskAdapterHelper;
 import com.example.javatest.Addapter.TaskAdapter;
 import com.example.javatest.Database.DAOtodo;
 import com.example.javatest.Moduls.TodoModuls;
@@ -23,6 +27,10 @@ import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class MainActivity extends AppCompatActivity implements ViewTodoBody {
@@ -41,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
 
         daoTodo = new DAOtodo();
 
+
         setContentView(R.layout.activity_main);
         RecyclerView rv = findViewById(R.id.tasks);
 
@@ -57,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
         rv.setAdapter(ta);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
+        ItemTouchHelper touchHelper = new ItemTouchHelper(new TaskAdapterHelper(ta));
+        touchHelper.attachToRecyclerView(rv);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,17 +84,23 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
     private void setUpTasks(){
 
         daoTodo.get().addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                ArrayList<TodoModuls> toSort = new ArrayList<>();
                 tasklist.clear();
+
                 for(DataSnapshot data : snapshot.getChildren()){
                    TodoModuls todoModul = data.getValue(TodoModuls.class);
                    if(todoModul.getForUser() == me) {
                        todoModul.setKey(data.getKey());
+
                        tasklist.add(todoModul);
                    }
-                    ta.notifyDataSetChanged();
                 }
+                Collections.sort(tasklist);
+                ta.notifyDataSetChanged();
             }
 
             @Override
@@ -93,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onTodoClick(int position) {
         Intent i = new Intent(MainActivity.this, ExpandetTodo.class);
@@ -101,15 +119,8 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
         i.putExtra("DATE", tasklist.get(position).getMaturityDate());
         i.putExtra("BESCHREIBUNG", tasklist.get(position).getBeschreibung());
         i.putExtra("KEY", tasklist.get(position).getKey() );
+
         startActivity(i);
 
     }
-
-
-
-
-
-
-
-
 }

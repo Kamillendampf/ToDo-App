@@ -22,13 +22,16 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.javatest.databinding.ActivityExpandetTodoBinding;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class ExpandetTodo extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityExpandetTodoBinding binding;
 
-    private TextView taskName, taskBeschreibung, taskDate, taskAutor;
-    private String key;
+    private TextView taskName, taskBeschreibung, taskDate, taskAutor, taskKey;
+
     private Button share, edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class ExpandetTodo extends AppCompatActivity {
         taskBeschreibung = findViewById(R.id.aufgabenBeschreibung);
         taskDate = findViewById(R.id.aufgabenEndDate);
         taskAutor = findViewById(R.id.aufgabenAutor);
-
+        taskKey =findViewById(R.id.key);
         share = findViewById(R.id.share);
         edit = findViewById(R.id.edit);
 
@@ -47,7 +50,10 @@ public class ExpandetTodo extends AppCompatActivity {
         taskBeschreibung.setText(getIntent().getStringExtra("BESCHREIBUNG"));
         taskDate.setText(getIntent().getStringExtra("DATE"));
         taskAutor.setText(getIntent().getStringExtra("AUTOR"));
-        key = getIntent().getStringExtra("KEY");
+        taskKey.setText(getIntent().getStringExtra("KEY"));
+
+
+
 
 
         share.setOnClickListener(new View.OnClickListener() {
