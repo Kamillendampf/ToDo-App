@@ -5,7 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Login">
+    tools:context=".Login"
+
+    android:background="#282828">
+
+    <TextView
+        android:id="@+id/text_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:text="Login mit Google"
+        android:textAlignment="center"
+        android:textColor="@color/white">
+
+    </TextView>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login mit Google"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/gray"></Button>
+
 
 
 

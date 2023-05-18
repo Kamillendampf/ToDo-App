@@ -21,20 +21,19 @@ import com.example.javatest.Addapter.TaskAdapter;
 import com.example.javatest.Database.DAOtodo;
 import com.example.javatest.Moduls.TodoModuls;
 import com.example.javatest.interfaces.ViewTodoBody;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
+
 
 
 public class MainActivity extends AppCompatActivity implements ViewTodoBody {
-    private final int me = 0;
+
 
     private TextView pageName;
     private ArrayList<TodoModuls> tasklist = new ArrayList<>();
@@ -43,11 +42,13 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
     private DAOtodo daoTodo;
     private TaskAdapter ta;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         daoTodo = new DAOtodo();
+
 
 
         setContentView(R.layout.activity_main);
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
         profil = findViewById(R.id.profil);
         pageName = findViewById(R.id.pageName);
 
-        //pageName.setText(getIntent().getStringExtra("auth"));
+        //pageName.setText(email);
 
         setUpTasks();
 
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
 
         profil.setOnClickListener(v -> {
             Intent i = new Intent(this, Profil.class);
+           // i.putExtra();
             startActivity(i);
         });
     }
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
 
                 for(DataSnapshot data : snapshot.getChildren()){
                    TodoModuls todoModul = data.getValue(TodoModuls.class);
-                   if(todoModul.getForUser() == me) {
+                   if(todoModul.getForUser().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
                        todoModul.setKey(data.getKey());
 
                        tasklist.add(todoModul);

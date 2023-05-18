@@ -13,6 +13,7 @@ import com.example.javatest.Database.DAOtodo;
 import com.example.javatest.Moduls.TodoModuls;
 import com.example.javatest.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -71,7 +72,7 @@ public class AddTask extends BottomSheetDialogFragment {
                 String task_month = month.getText().toString();
                 String task_year = year.getText().toString();
 
-                String autor = "Name";
+                String autor = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
 
 
@@ -107,7 +108,8 @@ public class AddTask extends BottomSheetDialogFragment {
 
                 } else {
                     TodoModuls tdm = null;
-                        tdm = new TodoModuls( 0, task_name,  autor,  task_beschreibung,  task_day, task_month, task_year);
+                    //Todo chance input of for user
+                        tdm = new TodoModuls( FirebaseAuth.getInstance().getCurrentUser().getEmail(), task_name,  autor,  task_beschreibung,  task_day, task_month, task_year);
 
                     daoTodo.add(tdm).addOnSuccessListener(suc -> {
 

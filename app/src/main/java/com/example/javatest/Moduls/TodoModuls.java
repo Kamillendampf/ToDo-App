@@ -21,14 +21,14 @@ public class TodoModuls implements Comparable<TodoModuls> {
 
 
     private String key;             // Der Key wird fuer die identifikation des ToDoModules benoetiget um dieses zu loeschen
-    private int forUser;            // id of the user.
+    private String forUser;            // id of the user.
     String test;
 
 
     //Konstruktor
     public TodoModuls(){}
 
-    public TodoModuls(int forUser, String name, String autor, String beschreibung, String day, String month, String year) {
+    public TodoModuls(String forUser, String name, String autor, String beschreibung, String day, String month, String year) {
         this.name = name;
         this.beschreibung = beschreibung;
         this.autor = autor;
@@ -70,9 +70,9 @@ public class TodoModuls implements Comparable<TodoModuls> {
         this.maturityDate = maturityDate;
     }
 
-    public int getForUser(){ return forUser;}
+    public String getForUser(){ return forUser;}
 
-    public void setForUser(int userId){ forUser = userId; }
+    public void setForUser(String userId){ forUser = userId; }
 
     public String getKey() { return this.key; }
 

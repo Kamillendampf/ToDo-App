@@ -1,5 +1,6 @@
 package com.example.javatest.Actions;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.javatest.Database.DAOtodo;
+import com.example.javatest.MainActivity;
 import com.example.javatest.Moduls.TodoModuls;
 import com.example.javatest.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -86,12 +88,15 @@ public class EditTodo  extends BottomSheetDialogFragment {
                 String task_month = month.getText().toString();
                 String task_year = year.getText().toString();
                 String autor = "Name";
-                TodoModuls tdm = new TodoModuls( 0, task_name,  autor,  task_beschreibung,  task_day, task_month, task_year);
+                //Todo change for user
+                TodoModuls tdm = new TodoModuls( "0", task_name,  autor,  task_beschreibung,  task_day, task_month, task_year);
                 HashMap <String, Object> tdmChange = new HashMap<>();
                 tdmChange.put("beschreibung", tdm.getBeschreibung());
                 tdmChange.put("maturityDate", tdm.getMaturityDate());
                 tdmChange.put("name", tdm.getName());
                 daoTodo.update(taskKey, tdmChange);
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
             }
         });
 

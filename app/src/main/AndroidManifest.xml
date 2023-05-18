@@ -7,7 +7,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="ToDo-App by Raphael Haerle"
+        android:label="ToDo-App"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JavaTest"
@@ -27,11 +27,8 @@
             android:exported="false"
             android:label="@string/title_activity_profil"
             android:theme="@style/Theme.JavaTest" />
-        <activity
-            android:name=".Profile"
-            android:exported="false"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.JavaTest" />
+
+
         <activity
             android:name=".SplashActivity"
             android:exported="true"

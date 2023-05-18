@@ -4,13 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#282828"
     android:fitsSystemWindows="true"
     tools:context=".Profil">
 
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="70dp"
+        tools:srcCompat="@tools:sample/avatars"></ImageView>
 
-    <Button
-        android:id="@+id/button"
+
+    <TextView
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:layout_marginTop="225dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textColor="#F4EFEF"
+        android:text="Test"></TextView>
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:layout_gravity="center_horizontal"
+        android:text="e-Mail"
+        android:textAlignment="center"
+        android:textColor="#F4EFEF"></TextView>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="330dp"
+        android:textAlignment="center"
+        android:textColor="#F4EFEF"
+        android:backgroundTint="#454545"
+        android:text="Logout" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

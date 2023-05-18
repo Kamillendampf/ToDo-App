@@ -16,6 +16,10 @@ import com.example.javatest.Moduls.TodoModuls;
 import com.example.javatest.R;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.HashMap;
 
 public class Share extends BottomSheetDialogFragment{
     DAOtodo daoTodo = new DAOtodo();
@@ -24,7 +28,7 @@ public class Share extends BottomSheetDialogFragment{
 
     private EditText forUser;
     private Button share;
-    TextView task_name,  task_beschreibung,  autor, task_endDate;
+    TextView task_name,  task_beschreibung,  autor, task_endDate, key;
     String day, month, year;
     public static Share newInstance (){return new Share();}
 
@@ -53,7 +57,7 @@ public class Share extends BottomSheetDialogFragment{
                 task_beschreibung = getActivity().findViewById(R.id.aufgabenBeschreibung);
                 task_endDate = getActivity().findViewById(R.id.aufgabenEndDate);
                 autor = getActivity().findViewById(R.id.aufgabenAutor);
-
+                key = getActivity().findViewById(R.id.key);
                 if (task_endDate.getText().toString().contains(".")){
                     String[] dateParts = task_endDate.getText().toString().split("\\.");
 
@@ -65,14 +69,11 @@ public class Share extends BottomSheetDialogFragment{
                 }
 
 
-                TodoModuls tdm = new TodoModuls( Integer.parseInt(String.valueOf(forUser.getText())), task_name.getText().toString(),  autor.getText().toString(),  task_beschreibung.getText().toString(),  day, month, year);
-                daoTodo.add(tdm).addOnSuccessListener(suc -> {
+                TodoModuls tdm = new TodoModuls( forUser.getText().toString(), task_name.getText().toString(),  autor.getText().toString(),  task_beschreibung.getText().toString(),  day, month, year);
+                HashMap<String, Object> tdmChange = new HashMap<>();
+                tdmChange.put("beschreibung", tdm.getForUser());
 
-                    getDialog().dismiss();
-
-                }).addOnFailureListener(er -> {
-
-                });
+                daoTodo.update(key.getText().toString(), tdmChange);
             }
         });
 
