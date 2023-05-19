@@ -3,12 +3,10 @@ package com.example.javatest;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.view.View;
 
-import com.google.android.gms.auth.api.identity.BeginSignInRequest;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.Nullable;

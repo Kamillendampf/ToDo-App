@@ -74,6 +74,8 @@ public class Share extends BottomSheetDialogFragment{
                 tdmChange.put("forUser", tdm.getForUser());
 
                 daoTodo.update(key.getText().toString(), tdmChange);
+
+                getDialog().dismiss();
             }
         });
 

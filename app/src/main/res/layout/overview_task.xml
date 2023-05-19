@@ -48,13 +48,23 @@
             android:id="@+id/taskEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="250dp"
+            android:layout_marginLeft="200dp"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="10dp"
             android:textColor="#F4EFEF"
             tools:text="01.01.9999">
 
         </TextView>
+        <Button
+            android:id="@+id/setColore"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginLeft="300dp"
+            android:backgroundTint="#464646">
+
+        </Button>
 
 
     </RelativeLayout>

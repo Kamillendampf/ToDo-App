@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
     private void setUpTasks(){
 
         daoTodo.get().addValueEventListener(new ValueEventListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
 
                 for(DataSnapshot data : snapshot.getChildren()){
                    TodoModuls todoModul = data.getValue(TodoModuls.class);
-                   if(todoModul.getForUser().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                   if(todoModul.getForUser().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail()) || todoModul.getAutor().equals(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()) ) {
                        todoModul.setKey(data.getKey());
 
                        tasklist.add(todoModul);

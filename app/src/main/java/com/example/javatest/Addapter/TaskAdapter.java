@@ -1,13 +1,17 @@
 package com.example.javatest.Addapter;
 
+
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.javatest.Database.DAOtodo;
@@ -15,7 +19,12 @@ import com.example.javatest.Moduls.TodoModuls;
 import com.example.javatest.R;
 import com.example.javatest.interfaces.ViewTodoBody;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     private final ViewTodoBody vtb;
@@ -89,7 +98,33 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.taskName.setText(todoModuls.get(position).getName());
         holder.taskAuthor.setText(todoModuls.get(position).getAutor());
         holder.taskEnd.setText(todoModuls.get(position).getMaturityDate());
-    }
+        Calendar calendar = Calendar.getInstance();
+        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+
+        String currentDate = format.format(Calendar.getInstance().getTime());
+        Date today = null;
+        Date myDate = null;
+        try {
+            today = format.parse(currentDate);
+            myDate = format.parse(todoModuls.get(position).getMaturityDate());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        long myDistance =(( myDate.getTime() - today.getTime())  / (24 * 60 * 60 * 1000));
+
+        if (myDistance < 3) {
+
+            holder.taskColor.setBackgroundColor(ContextCompat.getColor(this.getContext(), R.color.red));
+            holder.taskEnd.setText(String.valueOf(myDistance));
+        } else if (myDistance < 5) {
+            holder.taskColor.setBackgroundColor(ContextCompat.getColor(this.getContext(), R.color.yellow));
+        } else {
+            holder.taskColor.setBackgroundColor(ContextCompat.getColor(this.getContext(), R.color.gruen) );
+        }
+ }
+
+
 
     /**
      * Returns the total number of items in the data set held by the adapter.
@@ -113,14 +148,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView taskName, taskAuthor, taskEnd;
-
+        Button taskColor;
         public ViewHolder(@NonNull View itemView, ViewTodoBody vtb) {
             super(itemView);
 
             this.taskName = itemView.findViewById(R.id.taskName);
             this.taskAuthor = itemView.findViewById(R.id.taskAuthor);
             this.taskEnd = itemView.findViewById(R.id.taskEnd);
-
+            this.taskColor = itemView.findViewById(R.id.setColore);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
