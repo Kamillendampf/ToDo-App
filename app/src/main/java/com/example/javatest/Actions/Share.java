@@ -71,7 +71,7 @@ public class Share extends BottomSheetDialogFragment{
 
                 TodoModuls tdm = new TodoModuls( forUser.getText().toString(), task_name.getText().toString(),  autor.getText().toString(),  task_beschreibung.getText().toString(),  day, month, year);
                 HashMap<String, Object> tdmChange = new HashMap<>();
-                tdmChange.put("beschreibung", tdm.getForUser());
+                tdmChange.put("forUser", tdm.getForUser());
 
                 daoTodo.update(key.getText().toString(), tdmChange);
             }
