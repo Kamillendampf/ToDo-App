@@ -1,16 +1,16 @@
 package com.example.javatest;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.graphics.Outline;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,11 +21,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.tabs.TabLayout;
+import com.example.javatest.Actions.AddTask;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.InputStream;
-import java.net.URL;
+
 
 
 public class Profil extends AppCompatActivity {
@@ -35,6 +34,9 @@ public class Profil extends AppCompatActivity {
     private ImageView userPhoto;
     private final int YOUR_RADIUS_VALUE = 165;
     private static final String TAG = "Profil";
+
+    private ImageButton create, home;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +73,21 @@ public class Profil extends AppCompatActivity {
             }
         });
 
+        create = findViewById(R.id.create);
+        home = findViewById(R.id.home);
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddTask.newInstance().show(getSupportFragmentManager(), AddTask.TAG);
+            }
+        });
 
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Profil.this, MainActivity.class));
+            }
+        });
     }
 
 
