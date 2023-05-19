@@ -144,7 +144,7 @@ public class Login extends AppCompatActivity {
         }else {
 
 
-            tv.setText("Login Faild");
+
         }
 
     }

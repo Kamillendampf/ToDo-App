@@ -116,7 +116,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         if (myDistance < 3) {
 
             holder.taskColor.setBackgroundColor(ContextCompat.getColor(this.getContext(), R.color.red));
-            holder.taskEnd.setText(String.valueOf(myDistance));
+
         } else if (myDistance < 5) {
             holder.taskColor.setBackgroundColor(ContextCompat.getColor(this.getContext(), R.color.yellow));
         } else {

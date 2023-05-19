@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
         profil = findViewById(R.id.profil);
         pageName = findViewById(R.id.pageName);
 
-        //pageName.setText(email);
+
 
         setUpTasks();
 
@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements ViewTodoBody {
 
         profil.setOnClickListener(v -> {
             Intent i = new Intent(this, Profil.class);
-           // i.putExtra();
             startActivity(i);
         });
     }

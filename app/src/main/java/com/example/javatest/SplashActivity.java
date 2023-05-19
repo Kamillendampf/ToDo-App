@@ -1,19 +1,18 @@
 package com.example.javatest;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.window.SplashScreen;
+
+
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.Serializable;
+
 
 
 public class SplashActivity extends AppCompatActivity {

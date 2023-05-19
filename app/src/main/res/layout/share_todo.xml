@@ -14,7 +14,8 @@
         android:id="@+id/forUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="User Name">
+
+        android:hint="E-Mail des Nutzers eingeben">
 
     </EditText>
         <Button
