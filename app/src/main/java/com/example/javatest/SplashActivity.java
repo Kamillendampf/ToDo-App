@@ -5,8 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
-
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 

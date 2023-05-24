@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-
 import android.graphics.Outline;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,8 +35,12 @@ public class Profil extends AppCompatActivity {
     private static final String TAG = "Profil";
 
     private ImageButton create, home;
-    @SuppressLint("MissingInflatedId")
-    @Override
+    /**
+	 * 
+	 * @param savedInstanceState
+	 */
+	@SuppressLint("MissingInflatedId")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);

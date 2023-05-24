@@ -3,7 +3,6 @@ package com.example.javatest.Addapter.Helper;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
-
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
