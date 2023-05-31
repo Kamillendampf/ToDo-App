@@ -26,6 +26,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+/**
+ * Diese Klasse repräsentiert die Login-Aktivität, in der Benutzer sich mit ihrem Google-Konto anmelden können.
+ * Die Klasse verwaltet die Authentifizierung mit Firebase und die Verwendung des Google Sign-In-Dienstes.
+ * Nach erfolgreichem Login wird der Benutzer zur Hauptaktivität weitergeleitet.
+ *
+ * @author Raphael Härle
+ * @version 1.0
+ */
 public class Login extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private  FirebaseUser currentUser;
@@ -36,9 +44,11 @@ public class Login extends AppCompatActivity {
 
 
     /**
-	 * 
-	 * @param savedInstanceState
-	 */
+     * Diese Methode wird aufgerufen, wenn die Aktivität erstellt wird.
+     * Sie initialisiert die Ansicht, konfiguriert die Google-Anmeldung und den Firebase-Authentifizierungsmechanismus.
+     *
+     * @param savedInstanceState Der gespeicherte Zustand der Aktivität.
+     */
 	@SuppressLint("MissingInflatedId")
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +79,10 @@ public class Login extends AppCompatActivity {
 
     }
 
+    /**
+     * Diese Methode wird aufgerufen, wenn die Aktivität gestartet wird.
+     * Sie überprüft, ob der Benutzer bereits angemeldet ist, und aktualisiert die Benutzeroberfläche entsprechend.
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -76,6 +90,15 @@ public class Login extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
+
+    /**
+     * Diese Methode wird aufgerufen, wenn das Ergebnis einer Aktivität zurückgegeben wird.
+     * Sie verarbeitet das Ergebnis des Google Sign-In-Vorgangs und authentifiziert den Benutzer mit Firebase.
+     *
+     * @param requestCode Der Anforderungscode, der bei der Aktivitätsstartanforderung angegeben wurde.
+     * @param resultCode  Der Ergebniscode, der von der aufgerufenen Aktivität zurückgegeben wurde.
+     * @param data        Die Daten, die von der aufgerufenen Aktivität zurückgegeben wurden.
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -95,7 +118,11 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    // authentication with google
+    /**
+     * Diese Methode authentifiziert den Benutzer mit Firebase mithilfe des Google-Anmeldeinformationen.
+     *
+     * @param idToken Das Google-ID-Token des Benutzers.
+     */
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
@@ -116,12 +143,23 @@ public class Login extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Diese Methode startet den Google Sign-In-Vorgang.
+     * Sie zeigt das Google-Anmeldefenster an und erwartet das Ergebnis.
+     */
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
 
+    /**
+     * Diese Methode aktualisiert die Benutzeroberfläche entsprechend dem angemeldeten Benutzer.
+     * Wenn ein Benutzer angemeldet ist, wird sein Profil aktualisiert und er wird zur Hauptaktivität weitergeleitet.
+     * Wenn kein Benutzer angemeldet ist, wird die Benutzeroberfläche entsprechend angepasst.
+     *
+     * @param user Der angemeldete Firebase-Benutzer.
+     */
     private void updateUI(FirebaseUser user) {
         TextView tv = findViewById(R.id.text_login);
         if (user != null){

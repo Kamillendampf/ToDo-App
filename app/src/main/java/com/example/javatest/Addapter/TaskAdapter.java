@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,17 +26,32 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     private final ViewTodoBody vtb;
+    private DAOtodo daOtodo = new DAOtodo();
     Context context;
     ArrayList<TodoModuls> todoModuls;
+
+    /**
+     * Konstruktor des TaskAdapters.
+     *
+     * @param context      Der Kontext der Anwendung.
+     * @param todoModuls   Eine ArrayList mit TodoModuls-Objekten.
+     * @param vtb          Das ViewTodoBody-Objekt für die Klickereignisse.
+     */
     public TaskAdapter(Context context, ArrayList<TodoModuls> todoModuls, ViewTodoBody vtb){
         this.context = context;
         this.todoModuls = todoModuls;
         this.vtb = vtb;
     }
 
+    /**
+     * Gibt den Kontext zurück.
+     *
+     * @return Der Kontext.
+     */
     public Context getContext() {
         return context;
     }
@@ -45,22 +61,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
 
     /**
-     * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
-     * an item.
+     * Wird aufgerufen, wenn RecyclerView einen neuen {@link ViewHolder} des angegebenen Typs benötigt, um
+     * ein Element zu repräsentieren.
      * <p>
-     * This new ViewHolder should be constructed with a new View that can represent the items
-     * of the given type. You can either create a new View manually or inflate it from an XML
-     * layout file.
+     * Dieser neue ViewHolder sollte mit einer neuen View konstruiert werden, die die Elemente repräsentieren kann.
+     * des gegebenen Typs repräsentieren kann. Sie können entweder eine neue View manuell erstellen oder sie aus einer XML
+     * Layout-Datei.
      * <p>
-     * The new ViewHolder will be used to display items of the adapter using
-     * {link onBindViewHolder(ViewHolder, int, List)}. Since it will be re-used to display
-     * different items in the data set, it is a good idea to cache references to sub views of
-     * the View to avoid unnecessary {@link View#findViewById(int)} calls.
+     * Der neue ViewHolder wird verwendet um Elemente des Adapters anzuzeigen.
+     * {link onBindViewHolder(ViewHolder, int, List)}. Da er wiederverwendet wird um
+     * verschiedenen Elementen im Datensatz wiederverwendet wird, ist es eine gute Idee Referenzen auf Unteransichten der
+     * der View zu cachen, um unnötige {@link View#findViewById(int)} Aufrufe zu vermeiden.
      *
-     * @param parent   The ViewGroup into which the new View will be added after it is bound to
-     *                 an adapter position.
-     * @param viewType The view type of the new View.
-     * @return A new ViewHolder that holds a View of the given view type.
+     * @param parent Die ViewGroup in welche die neue View hinzugefügt wird, nachdem sie an
+     * eine Adapterposition gebunden ist.
+     * @param viewType Der View-Typ des neuen Views.
+     * @return Ein neuer ViewHolder, der eine View des angegebenen Viewtyps enthält.
      * @see #getItemViewType(int)
      * @see #onBindViewHolder(ViewHolder, int)
      */
@@ -74,24 +90,24 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
 
     /**
-     * Called by RecyclerView to display the data at the specified position. This method should
-     * update the contents of the {@link ViewHolder#itemView} to reflect the item at the given
-     * position.
+     * Wird von RecyclerView aufgerufen, um die Daten an der angegebenen Position anzuzeigen. Diese Methode sollte
+     * den Inhalt der {@link ViewHolder#itemView} aktualisieren, um das Element an der angegebenen
+     * Position widerzuspiegeln.
      * <p>
-     * Note that unlike {@link ListView}, RecyclerView will not call this method
-     * again if the position of the item changes in the data set unless the item itself is
-     * invalidated or the new position cannot be determined. For this reason, you should only
-     * use the <code>position</code> parameter while acquiring the related data item inside
-     * this method and should not keep a copy of it. If you need the position of an item later
-     * on (e.g. in a click listener), use {@link ViewHolder#getAdapterPosition()} which will
-     * have the updated adapter position.
+     * Beachte, dass im Gegensatz zur {@link ListView} RecyclerView diese Methode nicht erneut aufrufen wird,
+     * wenn sich die Position des Elements im Datensatz ändert, es sei denn, das Element selbst ist
+     * ungültig oder die neue Position kann nicht bestimmt werden. Aus diesem Grund solltest du nur
+     * den <code>position</code>-Parameter verwenden, um das zugehörige Datenobjekt innerhalb
+     * dieser Methode abzurufen und keine Kopie davon aufbewahren. Wenn du die Position eines Elements später benötigst
+     * (z.B. in einem Klick-Listener), verwende {@link ViewHolder#getAdapterPosition()}, die
+     * die aktualisierte Adapterposition enthält.
      * <p>
-     * Override {link #onBindViewHolder(ViewHolder, int, List)} instead if Adapter can
-     * handle efficient partial bind.
+     * Überschreibe stattdessen {link #onBindViewHolder(ViewHolder, int, List)}, wenn der Adapter
+     * eine effiziente teilweise Bindung unterstützen kann.
      *
-     * @param holder   The ViewHolder which should be updated to represent the contents of the
-     *                 item at the given position in the data set.
-     * @param position The position of the item within the adapter's data set.
+     * @param holder   Der ViewHolder, der aktualisiert werden soll, um den Inhalt des
+     *                 Elements an der angegebenen Position im Datensatz darzustellen.
+     * @param position Die Position des Elements im Datensatz des Adapters.
      */
     @Override
     public void onBindViewHolder(@NonNull TaskAdapter.ViewHolder holder, int position) {
@@ -122,14 +138,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         } else {
             holder.taskColor.setBackgroundColor(ContextCompat.getColor(this.getContext(), R.color.gruen) );
         }
+        if (todoModuls.get(position).isColor()){
+            holder.taskCarde.setBackgroundColor(ContextCompat.getColor(this.getContext(), R.color.lightgray));
+        }
  }
 
 
 
     /**
-     * Returns the total number of items in the data set held by the adapter.
+     * Gibt die Gesamtanzahl der Elemente im Datensatz des Adapters zurück.
      *
-     * @return The total number of items in this adapter.
+     * @return Die Gesamtanzahl der Elemente in diesem Adapter.
      */
     @Override
     public int getItemCount() {
@@ -137,18 +156,40 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
 
     public void removeItem(int position){
-        DAOtodo daOtodo = new DAOtodo();
         daOtodo.remove(todoModuls.get(position).getKey());
     }
 
-    /*
-        grabbing the views from our Recycling_view_row layout file
-        Kinda like on the onCreate method
-         */
+    public void setItemColor(int position){
+        if (todoModuls.get(position).isColor()){
+            todoModuls.get(position).setColor(false);
+            HashMap<String, Object> tdmChange = new HashMap<>();
+            tdmChange.put("color", todoModuls.get(position).isColor() );
+            daOtodo.update(todoModuls.get(position).getKey(), tdmChange);
+        } else {
+            todoModuls.get(position).setColor(true);
+            HashMap<String, Object> tdmChange = new HashMap<>();
+            tdmChange.put("color", todoModuls.get(position).isColor() );
+            daOtodo.update(todoModuls.get(position).getKey(), tdmChange);
+        }
+
+    }
+
+    /**
+     * Eine statische Klasse, die den ViewHolder für die RecyclerView darstellt.
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder{
+
+        View taskCarde;
 
         TextView taskName, taskAuthor, taskEnd;
         Button taskColor;
+
+        /**
+         * Konstruktor des ViewHolders.
+         *
+         * @param itemView Die zugehörige View des ViewHolders.
+         * @param vtb      Das ViewTodoBody-Objekt für die Klickereignisse.
+         */
         public ViewHolder(@NonNull View itemView, ViewTodoBody vtb) {
             super(itemView);
 
@@ -156,6 +197,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             this.taskAuthor = itemView.findViewById(R.id.taskAuthor);
             this.taskEnd = itemView.findViewById(R.id.taskEnd);
             this.taskColor = itemView.findViewById(R.id.setColore);
+            this.taskCarde = itemView.findViewById(R.id.cardColor);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

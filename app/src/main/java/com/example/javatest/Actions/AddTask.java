@@ -25,6 +25,9 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Die AddTask-Klasse ist ein BottomSheetDialogFragment zum Hinzufügen einer neuen To-Do-Aufgabe.
+ */
 public class AddTask extends BottomSheetDialogFragment {
     public static final String TAG = "add_task_layout";
 
@@ -35,9 +38,20 @@ public class AddTask extends BottomSheetDialogFragment {
     private LocalDate ld;
     DAOtodo daoTodo =  new DAOtodo();
 
+    /**
+     * Erstellt eine neue Instanz der AddTask-Klasse.
+     *
+     * @return Eine neue Instanz der AddTask-Klasse.
+     */
     public static AddTask newInstance(){
         return new AddTask();
     }
+
+    /**
+     * Wird aufgerufen, wenn die AddTask-Klasse erstellt wird.
+     *
+     * @param saveInstance Der gespeicherte Zustand der Instanz.
+     */
 
     @Override
     public void onCreate(Bundle saveInstance) {
@@ -46,6 +60,15 @@ public class AddTask extends BottomSheetDialogFragment {
         setStyle(STYLE_NORMAL, R.style.DialogStyle);
     }
 
+
+    /**
+     * Wird aufgerufen, um die Benutzeroberfläche des Dialogfragments zu erstellen.
+     *
+     * @param inflater           Der Inflater zum Aufblasen des Layouts.
+     * @param container          Der Container, der das Dialogfragment enthält.
+     * @param saveInstance Der gespeicherte Zustand der Instanz.
+     * @return Die erstellte View für das Dialogfragment.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstance){
         View view = inflater.inflate(R.layout.add_task_layout, container, false);
@@ -53,6 +76,12 @@ public class AddTask extends BottomSheetDialogFragment {
         return view;
     }
 
+    /**
+     * Wird aufgerufen, wenn die View erstellt wurde.
+     *
+     * @param view                  Die erstellte View des Dialogfragments.
+     * @param saveInstance Der gespeicherte Zustand der Instanz.
+     */
     @Override
     public void onViewCreated(View view, Bundle saveInstance){
         super.onViewCreated(view, saveInstance);

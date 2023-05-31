@@ -12,6 +12,11 @@ import com.example.javatest.Actions.EditTodo;
 import com.example.javatest.Actions.Share;
 import com.example.javatest.databinding.ActivityExpandetTodoBinding;
 
+/**
+ * Diese Aktivität zeigt eine erweiterte Ansicht für eine einzelne Aufgabe an.
+ * @author Raphael Härle
+ * @version 1.0
+ */
 public class ExpandetTodo extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -20,6 +25,7 @@ public class ExpandetTodo extends AppCompatActivity {
     private TextView taskName, taskBeschreibung, taskDate, taskAutor, taskKey;
 
     private Button share, edit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +35,7 @@ public class ExpandetTodo extends AppCompatActivity {
         taskBeschreibung = findViewById(R.id.aufgabenBeschreibung);
         taskDate = findViewById(R.id.aufgabenEndDate);
         taskAutor = findViewById(R.id.aufgabenAutor);
-        taskKey =findViewById(R.id.key);
+        taskKey = findViewById(R.id.key);
         share = findViewById(R.id.share);
         edit = findViewById(R.id.edit);
 
@@ -39,27 +45,28 @@ public class ExpandetTodo extends AppCompatActivity {
         taskAutor.setText(getIntent().getStringExtra("AUTOR"));
         taskKey.setText(getIntent().getStringExtra("KEY"));
 
-
-
-
-
+        /**
+         * Diese Methode wird aufgerufen, wenn der "Teilen"-Button geklickt wird.
+         * Sie öffnet das Teilen-Dialogfenster.
+         */
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Share.newInstance().show(getSupportFragmentManager(), Share.TAG);
-
             }
         });
+
+        /**
+         * Diese Methode wird aufgerufen, wenn der "Bearbeiten"-Button geklickt wird.
+         * Sie öffnet das Dialogfenster zum Bearbeiten der Aufgabe.
+         */
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 EditTodo.newInstance().show(getSupportFragmentManager(), Share.TAG);
-
             }
         });
-
     }
-
 }
+
+

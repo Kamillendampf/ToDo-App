@@ -24,7 +24,12 @@ import com.example.javatest.Actions.AddTask;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-
+/**
+ * Die Profil-Aktivität zeigt das Benutzerprofil an, einschließlich des Benutzernamens, der E-Mail-Adresse und des Profilbilds.
+ * Benutzer können sich ausloggen und zur Hauptaktivität navigieren.
+ * @author Rapahel Härle
+ * @version 1.0
+ */
 
 public class Profil extends AppCompatActivity {
 
@@ -35,21 +40,25 @@ public class Profil extends AppCompatActivity {
     private static final String TAG = "Profil";
 
     private ImageButton create, home;
+
+
     /**
-	 * 
-	 * @param savedInstanceState
-	 */
+    * Initialisiert die Profilaktivität, indem das Layout festgelegt, Benutzerinformationen abgerufen und Event-Listener eingerichtet werden.
+    *
+    * @param savedInstanceState Der gespeicherte Instanzzustand der Aktivität.
+     */
 	@SuppressLint("MissingInflatedId")
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
 
-
+        // Benutzerinformationen abrufen
         String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         String photo = String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl());
 
+        // Benutzerinformationen im UI setzen
         userName = findViewById(R.id.name);
         userMail = findViewById(R.id.email);
         userPhoto = findViewById(R.id.photo);
@@ -57,6 +66,7 @@ public class Profil extends AppCompatActivity {
         userName.setText(name);
         userMail.setText(email);
 
+        // Benutzerfoto konfigurieren
         userPhoto.setClipToOutline(true);
         userPhoto.setOutlineProvider(new ViewOutlineProvider() {
             @Override
@@ -65,8 +75,10 @@ public class Profil extends AppCompatActivity {
             }
         });
 
+        // Benutzerprofilbild herunterladen und setzen
         downloadProfileImage(this,photo, userPhoto );
 
+        // Logout-Schaltfläche einrichten
         findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +90,8 @@ public class Profil extends AppCompatActivity {
 
         create = findViewById(R.id.create);
         home = findViewById(R.id.home);
+
+        // Schaltfläche zum Erstellen einrichten
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +99,7 @@ public class Profil extends AppCompatActivity {
             }
         });
 
+        // Schaltfläche für die Startseite einrichten
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +109,13 @@ public class Profil extends AppCompatActivity {
     }
 
 
+    /**
+     * Lädt das Profilbild des Benutzers aus der gegebenen URL herunter und setzt es in den ImageView.
+     *
+     * @param c          Der Kontext der Aktivität.
+     * @param imageUrl   Die URL des Profilbildes.
+     * @param imageView  Der ImageView, in dem das Profilbild angezeigt werden soll.
+     */
     public static void downloadProfileImage(Context c, String imageUrl, final ImageView imageView ) {
         RequestQueue rq = Volley.newRequestQueue(c);
         ImageRequest ir = new ImageRequest(imageUrl, new Response.Listener<Bitmap>() {

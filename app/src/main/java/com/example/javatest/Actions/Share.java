@@ -16,6 +16,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.HashMap;
 
+/**
+ * Die Share-Klasse ist eine BottomSheetDialogFragment, die für das Teilen von To-Do-Aufgaben verwendet wird.
+ * @author Raphael Härle
+ * @version 1.0
+ */
 public class Share extends BottomSheetDialogFragment{
     DAOtodo daoTodo = new DAOtodo();
 
@@ -25,20 +30,47 @@ public class Share extends BottomSheetDialogFragment{
     private Button share;
     TextView task_name,  task_beschreibung,  autor, task_endDate, key;
     String day, month, year;
+
+    /**
+     * Erstellt eine neue Instanz der Share-Klasse.
+     *
+     * @return Eine neue Instanz der Share-Klasse.
+     */
     public static Share newInstance (){return new Share();}
 
+    /**
+     * Wird aufgerufen, wenn die Share-Klasse erstellt wird.
+     *
+     * @param saveInstance Der gespeicherte Zustand der Instanz.
+     */
     @Override
     public void onCreate(Bundle saveInstance) {
         super.onCreate(saveInstance);
 
         setStyle(STYLE_NORMAL, R.style.DialogStyle);
     }
+
+    /**
+     * Wird aufgerufen, um die Benutzeroberfläche des Dialogfragments zu erstellen.
+     *
+     * @param inflater           Der Inflater zum Aufblasen des Layouts.
+     * @param container          Der Container, der das Dialogfragment enthält.
+     * @param savedInstanceState Der gespeicherte Zustand der Instanz.
+     * @return Die erstellte View für das Dialogfragment.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstance){
         View view = inflater.inflate(R.layout.share_todo, container, false);
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         return view;
     }
+
+    /**
+     * Wird aufgerufen, wenn die View erstellt wurde.
+     *
+     * @param view                  Die erstellte View des Dialogfragments.
+     * @param savedInstanceState Der gespeicherte Zustand der Instanz.
+     */
     public void onViewCreated(View view, Bundle saveInstance){
         super.onViewCreated(view, saveInstance);
 

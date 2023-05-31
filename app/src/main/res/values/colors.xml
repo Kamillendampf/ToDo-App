@@ -6,4 +6,5 @@
     <color name="yellow"> #FFFF00 </color>
     <color name="gruen"> #00FF00 </color>
     <color name="gray"> #454545</color>
+    <color name="lightgray"> #6F6F6F</color>
 </resources>

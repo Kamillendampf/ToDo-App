@@ -17,7 +17,11 @@ import com.example.javatest.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.HashMap;
-
+/**
+ * Die EditTodo-Klasse ist ein BottomSheetDialogFragment zum Bearbeiten einer To-Do-Aufgabe.
+ * @author Raphael Härle
+ * @version 1.0
+ */
 public class EditTodo  extends BottomSheetDialogFragment {
 
     public static final String TAG = "add_task_layout";
@@ -29,8 +33,18 @@ public class EditTodo  extends BottomSheetDialogFragment {
 
     DAOtodo daoTodo =  new DAOtodo();
 
+    /**
+     * Erstellt eine neue Instanz der EditTodo-Klasse.
+     *
+     * @return Eine neue Instanz der EditTodo-Klasse.
+     */
     public static EditTodo newInstance(){ return new EditTodo();}
 
+    /**
+     * Wird aufgerufen, wenn die EditTodo-Klasse erstellt wird.
+     *
+     * @param saveInstance Der gespeicherte Zustand der Instanz.
+     */
     @Override
     public void onCreate(Bundle saveInstance) {
         super.onCreate(saveInstance);
@@ -38,6 +52,14 @@ public class EditTodo  extends BottomSheetDialogFragment {
         setStyle(STYLE_NORMAL, R.style.DialogStyle);
     }
 
+    /**
+     * Wird aufgerufen, um die Benutzeroberfläche des Dialogfragments zu erstellen.
+     *
+     * @param inflater           Der Inflater zum Aufblasen des Layouts.
+     * @param container          Der Container, der das Dialogfragment enthält.
+     * @param saveInstance Der gespeicherte Zustand der Instanz.
+     * @return Die erstellte View für das Dialogfragment.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstance){
         View view = inflater.inflate(R.layout.add_task_layout, container, false);
@@ -45,6 +67,12 @@ public class EditTodo  extends BottomSheetDialogFragment {
         return view;
     }
 
+    /**
+     * Wird aufgerufen, wenn die View erstellt wurde.
+     *
+     * @param view                  Die erstellte View des Dialogfragments.
+     * @param saveInstance Der gespeicherte Zustand der Instanz.
+     */
     @Override
     public void onViewCreated(View view, Bundle saveInstance){
         super.onViewCreated(view, saveInstance);
@@ -76,9 +104,6 @@ public class EditTodo  extends BottomSheetDialogFragment {
             year.setText(dateParts[2].toString());
         }
 
-
-
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +113,7 @@ public class EditTodo  extends BottomSheetDialogFragment {
                 String task_month = month.getText().toString();
                 String task_year = year.getText().toString();
                 String autor = "Name";
-                //Todo change for user
+
                 TodoModuls tdm = new TodoModuls( "0", task_name,  autor,  task_beschreibung,  task_day, task_month, task_year);
                 HashMap <String, Object> tdmChange = new HashMap<>();
                 tdmChange.put("beschreibung", tdm.getBeschreibung());
